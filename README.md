@@ -1,4 +1,4 @@
-Fortify metrics
+# Fortify metrics
 
 Parse DSOs to get statistics for how well `_FORTIFY_SOURCE` did with that DSO.
 This is different from [OpenOSC](https://github.com/cisco/OpenOSC), which aims
