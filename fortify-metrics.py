@@ -114,7 +114,7 @@ def eprint(*args, **kwargs):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Get build time statistics of _FORTIFY_SOURCE coverage for ELF files in given directories.')
     parser.add_argument('path', metavar='path', nargs='+',
-            help='Directories to analyze')
+            help='Files or directories to analyze')
     parser.add_argument('-v', '--verbose', required=False, action='store_true',
         help='Verbose mode.')
     parser.add_argument('-l', '--list', required=False, action='store_true',

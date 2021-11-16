@@ -13,7 +13,7 @@ Get build time statistics of _FORTIFY_SOURCE coverage for ELF files in given
 directories.
 
 positional arguments:
-  path           Directories to analyze
+  path           Files or directories to analyze
 
 optional arguments:
   -h, --help     show this help message and exit
