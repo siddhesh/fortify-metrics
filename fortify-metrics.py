@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# SPDX-License-Identifier: MIT
 
 import sys, argparse, magic, subprocess, os, re
 from stat import *
