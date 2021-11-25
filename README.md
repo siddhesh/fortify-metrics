@@ -9,19 +9,19 @@ OpenOSC assumes constant object sizes, which makes it unsuitable for
 `_FORTIFY_SOURCE=3`.
 
 ```
-usage: fortify-metrics.py [-h] [-v] [-l] path [path ...]
+usage: fortify-metrics.py [-h] [-v] [-l] [-f] path [path ...]
 
 Get build time statistics of _FORTIFY_SOURCE coverage for ELF files in given
 directories.
 
 positional arguments:
-  path           Files or directories to analyze
+  path            Files or directories to analyze
 
 optional arguments:
-  -h, --help     show this help message and exit
-  -v, --verbose  Verbose mode.
-  -l, --list     Prefix results with all fortifiable functions with zero call
-                 counts.
+  -h, --help      show this help message and exit
+  -v, --verbose   Verbose mode.
+  -l, --listall   Include fortifiable functions with zero call counts.
+  -f, --fullpath  Show full path in binary names.
 ```
 
 ## Known Limitations

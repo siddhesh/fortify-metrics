@@ -25,6 +25,15 @@ functions = ["asprintf", "confstr", "dprintf", "explicit_bzero", "fdelt",
              "wcsncpy", "wcsnrtombs", "wcsrtombs", "wcstombs", "wctomb",
              "wmemcpy", "wmemmove", "wmempcpy", "wmemset", "wprintf" ]
 
+listall = None
+fullpath = None
+
+def maybe_fullpath(f):
+    if fullpath:
+        return f
+    else:
+        return os.path.basename(f)
+
 def get_calls(line):
     m = re.search(r'.*<([^>]+)@plt>$', line.decode().strip())
 
@@ -47,7 +56,12 @@ def analyze_dso(f):
     unprotected_calls = [x for x in pltcalls if x and x in functions]
     unprotected_calls = {x:unprotected_calls.count(x) for x in unprotected_calls}
 
-    for k in set(list(protected_calls.keys()) + list(unprotected_calls.keys())):
+    if listall:
+        keys = functions
+    else:
+        keys = set(list(protected_calls.keys()) + list(unprotected_calls.keys()))
+
+    for k in keys:
         if k not in protected_calls.keys():
             p = 0
         else:
@@ -56,7 +70,7 @@ def analyze_dso(f):
             u = 0
         else:
             u = unprotected_calls[k]
-        print('%s, %s, %d, %d' % (f, k, p, u))
+        print('%s, %s, %d, %d' % (maybe_fullpath(f), k, p, u))
 
 def should_read(f):
     # Fast check, just the file name.
@@ -118,12 +132,14 @@ if __name__ == '__main__':
             help='Files or directories to analyze')
     parser.add_argument('-v', '--verbose', required=False, action='store_true',
         help='Verbose mode.')
-    parser.add_argument('-l', '--list', required=False, action='store_true',
-        help='Prefix results with all fortifiable functions with zero call counts.')
+    parser.add_argument('-l', '--listall', required=False, action='store_true',
+        help='Include fortifiable functions with zero call counts.')
+    parser.add_argument('-f', '--fullpath', required=False, action='store_true',
+        help='Show full path in binary names.')
 
     args = parser.parse_args()
-    if args.list:
-        list_fortifiable()
+    listall = args.list
+    fullpath = args.fullpath
 
     verbose_mode = args.verbose
     analyze_paths(args.path)
