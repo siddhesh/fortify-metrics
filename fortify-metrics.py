@@ -138,7 +138,7 @@ if __name__ == '__main__':
         help='Show full path in binary names.')
 
     args = parser.parse_args()
-    listall = args.list
+    listall = args.listall
     fullpath = args.fullpath
 
     verbose_mode = args.verbose
