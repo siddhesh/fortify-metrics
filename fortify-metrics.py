@@ -61,7 +61,7 @@ def analyze_dso(f):
     else:
         keys = set(list(protected_calls.keys()) + list(unprotected_calls.keys()))
 
-    for k in keys:
+    for k in sorted(keys):
         if k not in protected_calls.keys():
             p = 0
         else:
