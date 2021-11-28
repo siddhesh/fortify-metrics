@@ -27,6 +27,7 @@ functions = ["asprintf", "confstr", "dprintf", "explicit_bzero", "fdelt",
 
 listall = None
 fullpath = None
+package = ""
 
 def maybe_fullpath(f):
     if fullpath:
@@ -70,7 +71,7 @@ def analyze_dso(f):
             u = 0
         else:
             u = unprotected_calls[k]
-        print('%s, %s, %d, %d' % (maybe_fullpath(f), k, p, u))
+        print('%s%s, %s, %d, %d' % (package, maybe_fullpath(f), k, p, u))
 
 def should_read(f):
     # Fast check, just the file name.
@@ -129,17 +130,22 @@ def eprint(*args, **kwargs):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Get build time statistics of _FORTIFY_SOURCE coverage for ELF files in given directories.')
     parser.add_argument('path', metavar='path', nargs='+',
-            help='Files or directories to analyze')
+        help='Files or directories to analyze')
     parser.add_argument('-v', '--verbose', required=False, action='store_true',
         help='Verbose mode.')
     parser.add_argument('-l', '--listall', required=False, action='store_true',
         help='Include fortifiable functions with zero call counts.')
     parser.add_argument('-f', '--fullpath', required=False, action='store_true',
         help='Show full path in binary names.')
+    parser.add_argument('-p', '--package', required=False, type=str,
+        help='Print this package name against every line of the output.')
 
     args = parser.parse_args()
     listall = args.listall
     fullpath = args.fullpath
+
+    if args.package:
+        package = args.package + ", "
 
     verbose_mode = args.verbose
     analyze_paths(args.path)
