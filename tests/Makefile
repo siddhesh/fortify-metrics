@@ -1,4 +1,4 @@
-tests = vararray mult
+tests = mult min vararray
 PLUGIN_CFLAGS = -fplugin=../fmetrics.so -fplugin-arg-fmetrics-project=fmetrics -O2
 
 V ?= @

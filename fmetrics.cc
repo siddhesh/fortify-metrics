@@ -128,11 +128,12 @@ pass_fmetrics :: execute (function *fun)
 	  tree ptr = gimple_call_arg (call, 0);
 	  tree ost = gimple_call_arg (call, 1);
 
-	  /* Invalid object size type.  Bail out.  */
+	  /* Bail out on anything that is not a valid maximum object size
+	     type.  */
 	  if (TREE_CODE (ost) != INTEGER_CST
 	      || tree_int_cst_sgn (ost) < 0
-	      || compare_tree_int (ost, 3) > 0)
-	    return 0;
+	      || compare_tree_int (ost, 1) > 0)
+	    continue;
 
 	  int object_size_type = tree_to_shwi (ost);
 
