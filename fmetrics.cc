@@ -15,6 +15,7 @@
 
 int plugin_is_GPL_compatible;
 
+static size_t total;
 static size_t bos;
 static size_t bdos;
 char *project;
@@ -61,7 +62,7 @@ make_pass_fmetrics (gcc::context *ctx)
 void
 compile_done (void *d1, void *d2)
 {
-  fprintf (stderr, "%s:: %zu:%zu\n", project, bos, bdos);
+  fprintf (stderr, "%s:: %zu:%zu:%zu\n", project, total, bos, bdos);
   free (project);
 }
 
@@ -135,6 +136,7 @@ pass_fmetrics :: execute (function *fun)
 
 	  int object_size_type = tree_to_shwi (ost);
 
+	  total++;
 	  bos += get_object_size (ptr, object_size_type);
 	  bdos += get_object_size (ptr, object_size_type | OST_DYNAMIC);
 	}
