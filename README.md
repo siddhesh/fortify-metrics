@@ -20,8 +20,8 @@ been computed successfully if it were replaced with
 ### Running
 
 Add `-fplugin=$PATH_TO/fmetrics.so -fplugin-arg-fmetrics-project=SOMENAME` to
-`CFLAGS` or `CXXFLAGS` of the project you intend to analyze.  The output for
-every source file is written out to stderr in the form:
+`CFLAGS` or `CXXFLAGS` of the project you intend to analyze and then build it.
+The output for every source file is written out to stderr in the form:
 
 ```
 SOMENAME:: TOTAL:BOS:BDOS
