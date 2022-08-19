@@ -20,7 +20,6 @@ tests = \
 	builtin-object-size-18 \
 	builtin-object-size-19 \
 	builtin-object-size-20 \
-	builtin-object-size-21 \
 	builtin-object-size-22 \
 	mult \
 	min \
@@ -34,10 +33,16 @@ check: $(patsubst %,check-%,$(tests))
 
 check-%:%.c
 	$(V)echo -n "Testing $(subst %.c,%,$^): "
-	$(V)op=$$(diff -u $<.expected \
-		          <(gcc -o /dev/null -S $(PLUGIN_CFLAGS) $< \
-			    3>&1 1>&2 2>&3 3>&- | grep "^fmetrics:: ")) \
-	&& echo -e "\e[32mPASSED\e[0m" || echo -e "\e[31mFAILED\e[0m:\n$$op"
+	$(V)op=$$(gcc -o /dev/null -S $(PLUGIN_CFLAGS) $< 2>&1); \
+	if [ $$? -eq 0 ]; then \
+		op=$$(echo "$$op" | grep "^fmetrics:: "); \
+		op=$$(diff -u $<.expected <(echo $$op)); \
+	fi; \
+	if [ "x" = "x$$op" ]; then \
+		echo -e "\e[32mPASSED\e[0m"; \
+	else \
+		echo -e "\e[31mFAILED\e[0m:\n$$op"; \
+	fi
 
 gencheck: $(patsubst %,gencheck-%,$(tests))
 
