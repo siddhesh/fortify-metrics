@@ -113,7 +113,8 @@ pass_fmetrics :: execute (function *fun)
       for (i = gsi_start_bb (bb); !gsi_end_p (i); gsi_next (&i))
 	{
 	  gimple *call = gsi_stmt (i);
-	  if (!gimple_call_builtin_p (call, BUILT_IN_OBJECT_SIZE))
+	  if (!gimple_call_builtin_p (call, BUILT_IN_OBJECT_SIZE)
+	      || !gimple_call_builtin_p (call, BUILT_IN_DYNAMIC_OBJECT_SIZE))
 	    continue;
 
 	  tree lhs = gimple_call_lhs (call);
