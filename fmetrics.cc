@@ -10,8 +10,8 @@
 #include <tree-pass.h>
 #include <tree-pretty-print.h>
 #include <gimple.h>
-#include <gimple-fold.h>
 #include <gimple-iterator.h>
+#include <gimple-fold.h>
 
 int plugin_is_GPL_compatible;
 
