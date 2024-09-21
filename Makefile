@@ -18,8 +18,8 @@ fmetrics.o : fmetrics.cc
 clean:
 	rm -f fmetrics.so fmetrics.o
 
-check:
-	make -C tests check
+check: all
+	$(MAKE) -C tests check
 
 LIBDIR ?= /usr/local/lib
 BINDIR ?= /usr/local/bin
