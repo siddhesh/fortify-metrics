@@ -18,12 +18,13 @@ functions = ["asprintf", "confstr", "dprintf", "explicit_bzero", "fdelt",
              "obstack_vprintf", "poll", "ppoll", "pread", "pread64", "printf",
              "ptsname_r", "read", "readlink", "readlinkat", "realpath", "recv",
              "recvfrom", "snprintf", "sprintf", "stpcpy", "stpncpy", "strcat",
-             "strcpy", "strncat", "strncpy", "swprintf", "syslog", "ttyname_r",
-             "vasprintf", "vdprintf", "vfprintf", "vfwprintf", "vprintf",
-             "vsnprintf", "vsprintf", "vswprintf", "vsyslog", "vwprintf",
-             "wcpcpy", "wcpncpy", "wcrtomb", "wcscat", "wcscpy", "wcsncat",
-             "wcsncpy", "wcsnrtombs", "wcsrtombs", "wcstombs", "wctomb",
-             "wmemcpy", "wmemmove", "wmempcpy", "wmemset", "wprintf" ]
+             "strlcat", "strcpy", "strlcpy", "strncat", "strncpy", "swprintf",
+             "syslog", "ttyname_r", "vasprintf", "vdprintf", "vfprintf",
+             "vfwprintf", "vprintf", "vsnprintf", "vsprintf", "vswprintf",
+             "vsyslog", "vwprintf", "wcpcpy", "wcpncpy", "wcrtomb", "wcscat",
+             "wcscpy", "wcsncat", "wcsncpy", "wcsnrtombs", "wcsrtombs",
+             "wcstombs", "wcslcat", "wcslcpy", "wctomb", "wmemcpy", "wmemmove",
+             "wmempcpy", "wmemset", "wprintf"]
 
 listall = None
 fullpath = None
