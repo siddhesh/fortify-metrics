@@ -1,3 +1,5 @@
+SHELL = /bin/bash
+
 tests = \
 	builtin-dynamic-object-size-0 \
 	builtin-object-size-1 \
