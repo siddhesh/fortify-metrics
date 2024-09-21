@@ -44,6 +44,7 @@ check-%:%.c
 		echo -e "\e[32mPASSED\e[0m"; \
 	else \
 		echo -e "\e[31mFAILED\e[0m:\n$$op"; \
+		exit 1; \
 	fi
 
 gencheck: $(patsubst %,gencheck-%,$(tests))
