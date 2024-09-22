@@ -6,6 +6,7 @@
 #include <builtins.h>
 #include <context.h>
 #include <tree.h>
+#include <tree-cfgcleanup.h>
 #include <tree-object-size.h>
 #include <tree-pass.h>
 #include <tree-pretty-print.h>
@@ -107,6 +108,8 @@ unsigned int
 pass_fmetrics :: execute (function *fun)
 {
   basic_block bb;
+  unsigned int todo = 0;
+
   FOR_EACH_BB_FN (bb, fun)
     {
       gimple_stmt_iterator i;
@@ -146,5 +149,8 @@ pass_fmetrics :: execute (function *fun)
 
   fini_object_sizes ();
 
-  return 0;
+  if (cleanup_tree_cfg (TODO_update_ssa_only_virtuals))
+    todo |= TODO_update_ssa_only_virtuals;
+
+  return todo;
 }
