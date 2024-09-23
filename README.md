@@ -36,10 +36,11 @@ builtin were replaced with `__builtin_dynamic_object_size`.
 ### Known limitations of fmetrics.so
 
 The `__builtin_object_size` builtin may get folded away early in some cases,
-thus eluding the plugin.  These cases however are successes in both
-`__builtin_object_size` and `__builtin_dynamic_object_size`, so the meaning of
-the metrics should not change.  The percentage changes however may look
-different from the ideal case.
+thus eluding the plugin.  These cases however are successes or failures (e.g.
+in handling of volatile expressions) in both `__builtin_object_size` and
+`__builtin_dynamic_object_size`, so the meaning of the metrics should not
+change.  The percentage changes however may look different from the ideal
+case.
 
 ## fortify-metrics.py
 
